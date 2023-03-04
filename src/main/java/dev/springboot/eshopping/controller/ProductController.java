@@ -1,29 +1,21 @@
 package dev.springboot.eshopping.controller;
 
 import dev.springboot.eshopping.entity.Product;
-import dev.springboot.eshopping.service.ProductService;
+import dev.springboot.eshopping.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductServiceImpl productService) {
         this.productService = productService;
-    }
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World";
     }
 
     @PostMapping("/save")
@@ -35,5 +27,10 @@ public class ProductController {
     public String listProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         return "product-list";
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteProduct(@RequestBody Product product) {
+        productService.delete(product);
     }
 }
