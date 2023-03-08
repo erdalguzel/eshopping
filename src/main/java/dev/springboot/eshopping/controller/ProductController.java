@@ -29,8 +29,18 @@ public class ProductController {
         return "product-list";
     }
 
+    @GetMapping("/list/{id}")
+    public Product listProductById(@PathVariable("id") int id) {
+        return productService.getById(id);
+    }
+
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody Product product) {
         productService.delete(product);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteProductById(@PathVariable("id") int id) {
+        productService.deleteById(id);
     }
 }

@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Product List</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Bootstrap CSS -->
     <link
@@ -14,8 +14,21 @@
     />
 </head>
 <body>
-<h3>Product List</h3>
-<div >
+<div class="head">
+    <h3>Product List</h3>
+    <div class="form-group">
+        <label for="attribute">Choose pizza</label>
+        <select class="form-control selectpicker" id="attribute">
+            <option value="">Nothing selected</option>
+            <option th:each="attr : ${T(dev.springboot.eshopping.util.ProductAttributes).values()}"
+                    th:value="${attr}"
+                    th:text="${attr}">Attribute
+            </option>
+        </select>
+    </div>
+</div>
+
+<div>
     <table class="table thead-dark table-bordered">
         <tr>
             <th>Product Name</th>
@@ -25,10 +38,10 @@
         </tr>
 
         <tr th:each="product : ${products}">
-            <td th:text="${product.productName}" />
-            <td th:text="${product.rating}" />
-            <td th:text="${product.brand}" />
-            <td th:text="${product.seller}" />
+            <td th:text="${product.productName}"/>
+            <td th:text="${product.rating}"/>
+            <td th:text="${product.brand}"/>
+            <td th:text="${product.seller}"/>
         </tr>
     </table>
 </div>

@@ -9,10 +9,14 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
+    Product getById(int id);
+
     List<Product> getAllProductsBySortOrder(Sort.Direction direction);
 
     void save(Product product);
 
     void delete(Product product);
+
+    void deleteById(int id);
 
 }
