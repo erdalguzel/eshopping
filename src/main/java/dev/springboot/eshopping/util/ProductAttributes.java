@@ -6,7 +6,7 @@ public enum ProductAttributes {
     SELLER("SELLER"),
     BRAND("BRAND");
 
-    private String value;
+    private final String value;
 
     ProductAttributes(String value) {
         this.value = value;
